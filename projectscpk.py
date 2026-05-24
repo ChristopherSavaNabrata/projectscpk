@@ -60,6 +60,8 @@ if page == "Dataset & Analisis":
         st.subheader("2. Korelasi Antar Kriteria (Heatmap)")
         fig2, ax2 = plt.subplots()
         sns.heatmap(df.drop('label', axis=1).corr(), annot=True, cmap='coolwarm', ax=ax2)
+        ax2.xaxis.tick_top()
+        ax2.tick_params(axis='x', rotation=90)
         st.pyplot(fig2)
 
     with col2:
@@ -121,23 +123,23 @@ elif page == "Perhitungan SAW":
 
     c1, c2, c3 = st.columns(3)
     with c1:
-        st.markdown("### **Komponen N & P**")
-        st.slider("Slider Kandungan N", 0, 150, key="slider_n", value=st.session_state['n'], on_change=sync_widgets, args=("slider_n", "n"))
-        in_n = st.number_input("Number Input Kandungan N", min_value=0, max_value=150, key="n", on_change=sync_widgets, args=("n", "slider_n"))
+        st.markdown("### Nitrogen (N) & Fosfor (P)")
+        st.slider("Slider Kandungan Nitrogen (N)", 0, 150, key="slider_n", value=st.session_state['n'], on_change=sync_widgets, args=("slider_n", "n"))
+        in_n = st.number_input("Number Input Kandungan Nitrogen (N)", min_value=0, max_value=150, key="n", on_change=sync_widgets, args=("n", "slider_n"))
         st.write("") 
-        st.slider("Slider Kandungan P", 5, 145, key="slider_p", value=st.session_state['p'], on_change=sync_widgets, args=("slider_p", "p"))
-        in_p = st.number_input("Number Input Kandungan P", min_value=5, max_value=145, key="p", on_change=sync_widgets, args=("p", "slider_p"))
+        st.slider("Slider Kandungan Fosfor (P)", 5, 145, key="slider_p", value=st.session_state['p'], on_change=sync_widgets, args=("slider_p", "p"))
+        in_p = st.number_input("Number Input Kandungan Fosfor (P)", min_value=5, max_value=145, key="p", on_change=sync_widgets, args=("p", "slider_p"))
 
     with c2:
-        st.markdown("### **Komponen K & Suhu**")
-        st.slider("Slider Kandungan K", 5, 205, key="slider_k", value=st.session_state['k'], on_change=sync_widgets, args=("slider_k", "k"))
-        in_k = st.number_input("Number Input Kandungan K", min_value=5, max_value=205, key="k", on_change=sync_widgets, args=("k", "slider_k"))
+        st.markdown("### Kalium (K) & Suhu")
+        st.slider("Slider Kandungan Kaluim (K)", 5, 205, key="slider_k", value=st.session_state['k'], on_change=sync_widgets, args=("slider_k", "k"))
+        in_k = st.number_input("Number Input Kandungan Kalium (K)", min_value=5, max_value=205, key="k", on_change=sync_widgets, args=("k", "slider_k"))
         st.write("")
         st.slider("Slider Suhu (°C)", 8.0, 45.0, key="slider_temp", value=st.session_state['temp'], on_change=sync_widgets, args=("slider_temp", "temp"))
         in_temp = st.number_input("Number Input Suhu (°C)", min_value=8.0, max_value=45.0, key="temp", on_change=sync_widgets, args=("temp", "slider_temp"))
 
     with c3:
-        st.markdown("### **Kelembapan & pH**")
+        st.markdown("### Kelembapan & pH")
         st.slider("Slider Kelembapan (%)", 14.0, 100.0, key="slider_hum", value=st.session_state['hum'], on_change=sync_widgets, args=("slider_hum", "hum"))
         in_hum = st.number_input("Number Input Kelembapan (%)", min_value=14.0, max_value=100.0, key="hum", on_change=sync_widgets, args=("hum", "slider_hum"))
         st.write("")
